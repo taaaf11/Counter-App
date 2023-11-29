@@ -1,6 +1,5 @@
 import flet as ft
 
-
 counter_value = 0
 
 def main(page):
@@ -82,7 +81,10 @@ def main(page):
     about = ft.Column([
         ft.Text('Written by:', size=40),
         ft.Text('Muhammad Altaaf', size=20),
-        ft.IconButton(ft.icons.SOURCE_ROUNDED, on_click=lambda _:print('h'))
+        ft.Row([
+            ft.Text('Source: ', size=15),
+            ft.IconButton(ft.icons.SOURCE_ROUNDED)
+        ], alignment='center', vertical_alignment='center')
     ], alignment='center', horizontal_alignment='center', expand=True, visible=False)
     
     page.add(view, about)
