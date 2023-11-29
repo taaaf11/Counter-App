@@ -4,6 +4,7 @@ counter_value = 0
 
 def main(page):
     page.title = 'Counter'
+    github_repo = 'https://github.com/taaaf11/Counter-App'
     page.horizontal_alignment = 'center'
     page.theme_mode = 'dark'
     
@@ -83,7 +84,7 @@ def main(page):
         ft.Text('Muhammad Altaaf', size=20),
         ft.Row([
             ft.Text('Source: ', size=15),
-            ft.IconButton(ft.icons.SOURCE_ROUNDED)
+            ft.IconButton(ft.icons.SOURCE_ROUNDED, on_click=lambda _:page.launch_url(github_repo))
         ], alignment='center', vertical_alignment='center')
     ], alignment='center', horizontal_alignment='center', expand=True, visible=False)
     
