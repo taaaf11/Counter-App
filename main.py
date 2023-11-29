@@ -1,10 +1,10 @@
 import flet as ft
 
 
+counter_value = 0
+
 def main(page):
     page.title = 'Counter'
-    
-    counter_value = 0
     
     def increment_counter(e):
         global counter_value
@@ -16,7 +16,7 @@ def main(page):
     def reset_counter(e):
         global counter_value
         counter_value = 0
-        counter_label.value = str(counter_label)
+        counter_label.value = str(counter_value)
         page.update()
         
     
