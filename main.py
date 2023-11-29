@@ -5,6 +5,7 @@ counter_value = 0
 
 def main(page):
     page.title = 'Counter'
+    page.horizontal_alignment = 'center'
     page.theme_mode = 'dark'
     
     def increment_counter(e):
@@ -35,7 +36,36 @@ def main(page):
         
         # and update the page at the end
         page.update()
+    
+    
+    def change_current_page(e):
+        selected_page = e.control.selected_index
+        if selected_page == 0:
+            view.visible = True
+            about.visible = False
+        elif selected_page == 1:
+            view.visible = False
+            about.visible = True
         
+        page.update()
+        
+    
+    page.appbar = ft.AppBar(title=ft.Text('Counter'))
+    
+    page.drawer = ft.NavigationDrawer(controls=[
+        ft.NavigationDrawerDestination(
+            icon=ft.icons.HOME_OUTLINED,
+            label='Home',
+            selected_icon=ft.icons.HOME_ROUNDED),
+        
+        ft.Divider(thickness=1),
+        
+        ft.NavigationDrawerDestination(
+            icon=ft.icons.LIGHTBULB_OUTLINED,
+            label='About',
+            selected_icon=ft.icons.LIGHTBULB_ROUNDED)
+    ], selected_index=0, on_change=change_current_page)
+    
     
     button_reset = ft.IconButton(ft.icons.ROTATE_90_DEGREES_CCW_ROUNDED, on_click=reset_counter)
     counter_label  = ft.TextField(value='0', read_only=True)
@@ -47,9 +77,15 @@ def main(page):
         button_reset,
         counter_label,
         button_inc
-    ], alignment='center', vertical_alignment='center', expand=True)
+    ], alignment='center', vertical_alignment='center', expand=True, visible=True)
     
-    page.add(view)
+    about = ft.Column([
+        ft.Text('Written by:', size=40),
+        ft.Text('Muhammad Altaaf', size=20),
+        ft.IconButton(ft.icons.SOURCE_ROUNDED, on_click=lambda _:print('h'))
+    ], alignment='center', horizontal_alignment='center', expand=True, visible=False)
+    
+    page.add(view, about)
     
     
 if __name__ == '__main__':
